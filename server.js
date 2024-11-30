@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = 3000;
 
 const RESTAURANT = {
     name: 'The Green Byle Bistro',
@@ -55,7 +56,10 @@ app.get('/', (req, res) => {
   res.render('home.ejs');
 });
 
-
+app.get('/menu', (req, res) => { // Add menu route
+    res.render('menu.ejs', { menu: RESTAURANT.menu });
 
 app.listen(3000);
+});
+
 
