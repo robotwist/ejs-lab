@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
 const RESTAURANT = {
     name: 'The Green Byle Bistro',
@@ -58,8 +57,25 @@ app.get('/', (req, res) => {
 
 app.get('/menu', (req, res) => { // Add menu route
     res.render('menu.ejs', { menu: RESTAURANT.menu });
-
-app.listen(3000);
 });
 
+app.get('/menu/:category', (req, res) => { // Add category route
+  const category = req.params.category; // Get category from URL parameter 
+  
+  // Filter menu items based on category
+  const filteredMenuItems = RESTAURANT.menu.filter(
+    (item) => item.category === category
+  );
 
+  // Capitalize the first letter of the category name for better UI
+  const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+
+  res.render('category.ejs', {
+    menuItems: filteredMenuItems,
+    categoryName: categoryName,
+  });
+});
+
+app.listen(3001, () => { // Add server listen
+  console.log('Server is running on port 3001');
+  });

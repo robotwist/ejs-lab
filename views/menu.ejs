@@ -2,18 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu</title>
+  <link rel="stylesheet" href="style.css">
+<body>
+  <%- include('./partials/nav.ejs') %>
 </head>
 <body>
   <h1>Full Menu</h1>
+
+  <h2>Mains</h2>
   <ul>
-    <% for (const item of locals.restaurant.menu) { %>
-        <h2> <%= item.name %> </h2>
-        <p>Price: <%= item.price %> </p>
-        <p>Rating: <%= item.rating %> </p>
-        <p>Details: <%= item.details %> </p>
+    <% menu.forEach(item => { %>
+      <% if (item.category === 'mains') { %>
+        <li>
+          <h3><%= item.name %></h3>
+          <p>Price: $<%= item.price %></p>
+          <p>Rating: <%= item.rating %> stars</p>
+          <p><%= item.details %></p>
+        </li>
+      <% } %>
+    <% }); %>
   </ul>
-   
+
+  <h2>Desserts</h2>
+  <ul>
+    <% menu.forEach(item => { %>
+      <% if (item.category === 'desserts') { %>
+        <li>
+          <h3><%= item.name %></h3>
+          <p>Price: $<%= item.price %></p>
+          <p>Rating: <%= item.rating %> stars</p>
+          <p><%= item.details %></p>
+        </li>
+      <% } %>
+    <% }); %>
+  </ul>
+
+  <h2>Sides</h2>
+  <ul>
+    <% menu.forEach(item => { %>
+      <% if (item.category === 'sides') { %>
+        <li>
+          <h3><%= item.name %></h3>
+          <p>Price: $<%= item.price %></p>
+          <p>Rating: <%= item.rating %> stars</p>
+          <p><%= item.details %></p>
+        </li>
+      <% } %>
+    <% }); %>
+  </ul>
 </body>
 </html>

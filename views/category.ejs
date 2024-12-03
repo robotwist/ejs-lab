@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Green Byle Bistro - Menu: <%= categoryName %></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+</head>
+  <h1>The Green Byle Bistro - <%= categoryName %> Menu</h1>
+  <ul>
+    <% menuItems.forEach((item) => { %>
+      <li>
+        <h2><%= item.name %></h2>
+        <p>Price: $<%= item.price %></p>
+        <p>Rating: <%= item.rating %> stars</p>
+        <p>Details: <%= item.details %></p>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
